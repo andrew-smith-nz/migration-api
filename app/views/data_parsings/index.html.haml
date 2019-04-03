@@ -1,0 +1,30 @@
+%h1 Pack Sizes
+
+%input{:type=>"checkbox", :id=>"invalid_only", :onchange=>"$('.valid').toggle()"}
+Invalid Only
+%br
+%br
+%table
+  %tr
+    %th Id
+    %th Description
+    %th Original Pack Size
+    %th Pack Description
+    %th Units in Pack
+    %th Unit Dimension 1
+    %th Unit Dimension 2
+    %th Unit Dimension 3
+    %th Unit Measurement
+    %th Notes
+  - @parsed_pack_sizes.each do |pack_size|
+    %tr{:style => "color: #{pack_size.valid ? 'green' : 'red'}", :class => "#{pack_size.valid ? 'valid' : 'invalid'}"}
+      %td= pack_size.id
+      %td= pack_size.description
+      %td= pack_size.original_pack_size
+      %td= pack_size.pack_description
+      %td= pack_size.units_in_pack
+      %td= pack_size.unit_dimension_1 || '-'
+      %td= pack_size.unit_dimension_2 || '-'
+      %td= pack_size.unit_dimension_3 || '-'
+      %td= pack_size.unit_string
+      %td= pack_size.notes

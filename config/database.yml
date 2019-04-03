@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: migration-api
+  pool: 5
+  username: mealsuite
+  password: mealsuite
+  host: localhost
