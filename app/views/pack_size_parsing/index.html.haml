@@ -23,8 +23,8 @@ Invalid Only
       %td= pack_size.original_pack_size
       %td= pack_size.pack_description
       %td= pack_size.units_in_pack
-      %td= pack_size.unit_dimension_1 || '-'
-      %td= pack_size.unit_dimension_2 || '-'
-      %td= pack_size.unit_dimension_3 || '-'
+      %td= number_with_precision(pack_size.unit_dimension_1, precision: 2, strip_insignificant_zeros: true) || '-'
+      %td= number_with_precision(pack_size.unit_dimension_2, precision: 2, strip_insignificant_zeros: true) || '-'
+      %td= number_with_precision(pack_size.unit_dimension_3, precision: 2, strip_insignificant_zeros: true) || '-'
       %td= pack_size.unit_string
       %td= pack_size.notes

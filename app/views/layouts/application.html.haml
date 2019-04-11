@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title
+      Menustream
+    = csrf_meta_tags
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lato'
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application', media: 'all'
+    = yield :head
+  %body
+#sidebar{:style => "padding-left:20px; padding-top:20px"}
+  = link_to product_name_parsing_index_path do
+    %span Tags
+#main-content
+  #flash
+    .row
+      .col-md-12
+        - flash.each do |name, msg|
+          - if name.to_s == "error"
+            .alert.alert-danger= msg
+          - else
+            .alert.alert-success= msg.html_safe
+
+
+  .row
+    = yield

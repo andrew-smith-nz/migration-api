@@ -1,0 +1,22 @@
+%h1 Pack Sizes
+%br
+%br
+%b Search
+=form_tag(search_brand_parsing_index_path, :method => :get) do
+  =text_field_tag :search, params["search"]
+  =button_tag 'Go', class: 'search-button' , type: :submit
+%br
+%br
+
+
+%table
+  %tr
+    %th Brand Abbreviation
+    -#%th Source
+    %th Possible Matches
+  %tr{:style=>"height:20px"}
+  - @parsed_brands.each do |brand|
+    %tr
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:top"}= brand[:abbreviation]
+      -#%td{:style=>"border-bottom: 1px grey solid; vertical-align:top"}= brand[:source]
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:top"}= brand[:matches]

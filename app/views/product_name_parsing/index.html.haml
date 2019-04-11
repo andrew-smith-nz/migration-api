@@ -1,0 +1,28 @@
+%h1 Tags
+%br
+%br
+-#%b Search
+-#=form_tag(search_brand_parsing_index_path, :method => :get) do
+-#  =text_field_tag :search, params["search"]
+-#  =button_tag 'Go', class: 'search-button' , type: :submit
+-#%br
+-#%br
+
+
+%table
+  %tr{:style=>"text-align:left;"}
+    %th{:style=>"padding-right:20px"} Tag Group
+    %th Tag
+    %th Count
+  %tr{:style=>"height:20px"}
+  -prev_group = ''
+  - @tag_counts.each do |count|
+    -show_group = prev_group != count[:tag].product_tag_group.name
+    -prev_group = count[:tag].product_tag_group.name
+    %tr
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:top; padding-right:20px"}
+        -if show_group
+          =count[:tag].product_tag_group.name
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:top; padding-right:20px"}
+        =link_to count[:tag].name, '/product_name_parsing/tag/' + count[:tag].name
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:top"}= count[:count]

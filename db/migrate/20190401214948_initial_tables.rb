@@ -16,5 +16,15 @@ class InitialTables < ActiveRecord::Migration[5.2]
       t.string :pack_size
       t.string :description
     end
+
+    create_table :brands do |t|
+      t.string :name
+    end
+
+    create_table :brand_abbreviations do |t|
+      t.integer :brand_id
+      t.string :source
+      t.string :abbreviation
+    end
   end
 end

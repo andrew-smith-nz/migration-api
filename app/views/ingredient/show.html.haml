@@ -1,0 +1,23 @@
+%h1=@ingredient.name
+%br
+- @ingredient.product_tags.each do |tag|
+  %a.tag{href: '/product_name_parsing/tag/' + tag.name}=tag.name
+%br
+%br
+%h2 Similar Ingredients
+%table
+  - @similar_ingredients.each do |similar_ingredient|
+    %tr
+      %td{:style=>"padding-right:20px"}
+        %a{href: '/ingredient/' + similar_ingredient.id.to_s}=similar_ingredient.name
+      %td
+        - @ingredient.product_tags.each do |tag|
+          - if !similar_ingredient.product_tags.include?(tag)
+            %a.tag.tag-nomatch{href: '/product_name_parsing/tag/' + tag.name}="- " + tag.name
+        - similar_ingredient.product_tags.each do |tag|
+          - if @ingredient.product_tags.include?(tag)
+            -#%a.tag.tag-match{href: '/product_name_parsing/tag/' + tag.name}=tag.name
+          - else
+            %a.tag.tag-added{href: '/product_name_parsing/tag/' + tag.name}="+ " + tag.name
+
+

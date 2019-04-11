@@ -1,0 +1,11 @@
+%h1= params[:tag]
+
+%table
+  %tr{:style=>"height:20px"}
+  - @names.each do |name|
+    %tr{:style=>"height:30px"}
+      %td{:style=>"border-bottom: 1px grey solid; vertical-align:middle"}
+        %a{href: '/ingredient/' + name.id.to_s}=name.name
+      %td{:style=>"display:inline; vertical-align:middle"}
+        - name.product_tags.each do |tag|
+          %a.tag{href: '/product_name_parsing/tag/' + tag.name}=tag.name
