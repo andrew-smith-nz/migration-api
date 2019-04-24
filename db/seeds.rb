@@ -10,8 +10,9 @@
 
 #require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_ingredient_names.rb"
 #require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_nutritional_source_names.rb"
-require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_product_names.rb"
+#require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_product_names.rb"
 #require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_product_tags.rb"
+require File.expand_path(File.dirname(__FILE__))+"/seeds/seed_product_pack_sizes.rb"
 
 
 NotationReplacement.delete_all

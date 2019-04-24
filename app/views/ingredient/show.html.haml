@@ -1,23 +1,26 @@
 %h1=@ingredient.name
+
 %br
 - @ingredient.product_tags.each do |tag|
   %a.tag{href: '/product_name_parsing/tag/' + tag.name}=tag.name
 %br
 %br
-%h2 Similar Ingredients
-%table
-  - @similar_ingredients.each do |similar_ingredient|
-    %tr
-      %td{:style=>"padding-right:20px"}
-        %a{href: '/ingredient/' + similar_ingredient.id.to_s}=similar_ingredient.name
-      %td
-        - @ingredient.product_tags.each do |tag|
-          - if !similar_ingredient.product_tags.include?(tag)
-            %a.tag.tag-nomatch{href: '/product_name_parsing/tag/' + tag.name}="- " + tag.name
-        - similar_ingredient.product_tags.each do |tag|
-          - if @ingredient.product_tags.include?(tag)
-            -#%a.tag.tag-match{href: '/product_name_parsing/tag/' + tag.name}=tag.name
-          - else
-            %a.tag.tag-added{href: '/product_name_parsing/tag/' + tag.name}="+ " + tag.name
-
-
+  -[{name: 'ingredient', collection: @similar_ingredients}, {name: 'nutritional_source', collection: @similar_nutritional_sources}, {name: 'product', collection: @similar_products}].each do |thing|
+    %h2="Similar #{thing[:name].humanize.pluralize(2)}"
+    %table
+      - thing[:collection].each do |similar_ingredient|
+        - match_data = similar_ingredient.match_construct
+        %tr
+          %td{:style=>"width:50px; background-color:#{match_data[:color]}; text-align:center", :title=>"#{match_data[:tag_percent]} tag, #{match_data[:name_percent]} name"}
+            =match_data[:percent].to_s + "%"
+          %td{:style=>"padding-left:20px; padding-right:20px"}
+            %a{href: "/#{thing[:name]}/" + similar_ingredient.id.to_s}=similar_ingredient.name
+          %td
+            - @ingredient.product_tags.each do |tag|
+              - if !similar_ingredient.product_tags.include?(tag)
+                %a.tag.tag-nomatch{href: '/product_name_parsing/tag/' + tag.name}="- " + tag.name
+            - similar_ingredient.product_tags.each do |tag|
+              - if @ingredient.product_tags.include?(tag)
+                -#%a.tag.tag-match{href: '/product_name_parsing/tag/' + tag.name}=tag.name
+              - else
+                %a.tag.tag-added{href: '/product_name_parsing/tag/' + tag.name}="+ " + tag.name

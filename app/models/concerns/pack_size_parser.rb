@@ -92,7 +92,7 @@ module PackSizeParser
         input.notes = input.unit_string.match(/\(.*\)/).to_s.gsub(/\(|\)/, '')
         input.unit_string.gsub!(/[ ]*\(.*\)/, '')
       end
-      input.valid = !input.units_in_pack.to_s.empty? && !input.unit_dimension_1.to_s.empty? #&& has_numbers && has_letters
+      input.valid = !input.units_in_pack.to_s.empty? && !input.unit_dimension_1.to_s.empty? && !input.unit_string.empty? #&& has_numbers && has_letters
     end
     inputs
   end

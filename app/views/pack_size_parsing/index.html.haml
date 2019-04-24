@@ -1,7 +1,17 @@
+:scss
+  td, th{
+    padding:5px;
+    border: 0.5px solid gray
+  }
+
 %h1 Pack Sizes
 
-%input{:type=>"checkbox", :id=>"invalid_only", :onchange=>"$('.valid').toggle()"}
-Invalid Only
+%table
+  %tr
+    %td{:style=>"padding-top:20px; border:none"}
+      %input{:type=>"checkbox", :id=>"invalid_only", :onchange=>"$('.valid').toggle()"}
+    %td{:style=>"border:none"}
+      Invalid Only
 %br
 %br
 %table
